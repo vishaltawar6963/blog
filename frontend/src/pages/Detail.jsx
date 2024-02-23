@@ -6,6 +6,7 @@ import { deleteBlogAction, getSingleBlogAction, updateBlogAction, updateBlogPubl
 import parse from "html-react-parser"
 import { toast } from 'react-toastify'
 import ReactQuill from 'react-quill'
+import { baseUrl } from '../url'
 
 export default function Detail() {
     const { id } = useParams()
@@ -50,11 +51,14 @@ export default function Detail() {
         dispatch(deleteBlogAction(id))
         blogDeleted && toast.error("Blog Updated", {
             position: toast.POSITION.TOP_CENTER
-        }) && navigate("/")
+        }) 
     }
 
     useEffect(() => {
         dispatch(getSingleBlogAction(id))
+        if(blogDeleted){
+navigate('/account')
+        }
     }, [blogDeleted])
 
 
@@ -111,7 +115,7 @@ export default function Detail() {
                                         </div>
                                     } */}
 
-                                    <img src={`http://localhost:5000/${singleBlog.image}`} className='img-fluid m-4' width={500} alt="" />
+                                    <img src={`${baseUrl}/${singleBlog.image}`} className='img-fluid m-4' width={500} alt="" />
                                 </div>
 
                                 <div className=" d-flex align-items-center flex-column">

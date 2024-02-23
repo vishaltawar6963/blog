@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from 'react-router-dom'
 import { getUserBlogAction } from '../../redux/action/blogAction'
 import { allUserAction } from '../../redux/action/userAction'
+import { baseUrl } from '../../url'
 
 
 export default function Dashboard() {
@@ -33,7 +34,7 @@ export default function Dashboard() {
                         {
                             allUser && allUser.map(item => <tbody>
                                 <tr onClick={e => handleShow(item._id)} >
-                                    <td><img src={`http://localhost:5000/${item.avatar}`} width={60} referrerPolicy="no-referrer" alt="" className='rounded' /></td>
+                                    <td><img src={`${baseUrl}/${item.avatar}`} width={60} referrerPolicy="no-referrer" alt="" className='rounded' /></td>
                                     <td>{item.name}</td>
                                     <td>{item.email}</td>
                                 </tr>
@@ -55,7 +56,7 @@ export default function Dashboard() {
                                                 : <strong className='m-2 text-danger'>Blog Has Not Publish</strong>
 
                                         }
-                                        <Link to={`/detail/${item._id}`} > <img src={`http://localhost:5000/${item.image}`} className='img-fluid' alt="" /></Link>
+                                        <Link to={`/detail/${item._id}`} > <img src={`${baseUrl}/${item.image}`} className='img-fluid' alt="" /></Link>
                                         <span className='text-muted mt-1'><strong>{item.category}</strong></span>
                                         <h3 className=''>{item.title}</h3>
                                         <Link to={`/detail/${item._id}`}>View Detail</Link>

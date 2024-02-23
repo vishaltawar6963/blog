@@ -2,7 +2,8 @@ const user = require("./../models/userModel")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
-exports.userRegister = async (req, res) => {
+exports.
+userRegister = async (req, res) => {
     try {
         const salt = await bcrypt.genSalt(10)
         req.body.password = await bcrypt.hash(req.body.password, salt)
@@ -28,8 +29,9 @@ exports.userRegister = async (req, res) => {
         })
 
     } catch (error) {
+        
         res.status(401).json({
-            message: "error" + error
+            message: "errorrrrrr" + error
         })
     }
 }
@@ -67,7 +69,7 @@ exports.userLogin = async (req, res) => {
 
     } catch (error) {
         res.status(401).json({
-            message: "error" + error
+            message: "errorrrrrrrr" + error
         })
     }
 }

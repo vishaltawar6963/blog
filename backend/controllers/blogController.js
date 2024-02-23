@@ -33,6 +33,8 @@ exports.getAllBlog = async (req, res) => {
     try {
 
         const result = await blog.find({ publish: true }).populate('userId', 'name email')
+        console.log('xxxxxxxxxxxxxx' , result);
+        
         res.json({
             message: "All Blog Fatch Sucessfully",
             result

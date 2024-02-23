@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getAllBlogAction } from '../redux/action/blogAction'
 import { Link } from "react-router-dom"
+import { baseUrl } from '../url'
 
 
 export default function Home() {
@@ -51,7 +52,7 @@ export default function Home() {
                                     select == "Game Developer" && item.category == "Game Developer"
                                 ).map(item => <div className="col-sm-6 p-4">
                                     <div class="card h-100 text-center">
-                                        <Link to={`/detail/${item._id}`} > <img src={`http://localhost:5000/${item.image}`} className='p-4 hover' height={300} alt="" /></Link>
+                                        <Link to={`/detail/${item._id}`} > <img src={`${baseUrl}/${item.image}`} className='p-4 hover' height={300} alt="" /></Link>
                                         <div className='p-3'>
                                             <span className='mt-1'><strong>{item.category}</strong></span> <br />
                                             <span className='p-4'><strong className='text-muted m-1'>Created By : </strong><strong> Mr. {item.userId.name}</strong></span>

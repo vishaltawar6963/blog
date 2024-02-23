@@ -1,16 +1,18 @@
 const express = require("express")
 require("colors")
-require("dotenv").config({ path: "./config/.env" })
+const dotenv = require('dotenv');
 const cors = require("cors")
+dotenv.config()
 
 // routes
 const authRoute = require("./routes/authRoute")
 const userRoute = require("./routes/userRoute")
-const blogRoute = require("./routes/blogRoute")
+const blogRoute = require("./routes/blogRoute");
+const connectDb = require("./config/db");
 // routes
 
-const { db } = require("./config/db")
-db()
+
+connectDb()
 
 
 const app = express()
@@ -29,8 +31,9 @@ app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
 app.use("/api/blog", blogRoute)
 
-const PORT = process.env.PORT || 5500
+const PORT = process.env.PORT 
 app.listen(PORT, err => {
     err && console.log(`SERVER ERROR ${err}`.bgRed)
     console.log(`SERVER RUNNING On http://localhost:${PORT}`.bgBlue);
 })
+

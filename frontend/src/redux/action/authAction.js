@@ -1,10 +1,11 @@
 import axios from "axios"
 import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS } from "../constant/authConstant"
+import { baseUrl } from "../../url"
 
 export const userRegisterAction = (userData) => async dispatch => {
     try {
         dispatch({ type: USER_REGISTER_REQUEST })
-        const { data: { result } } = await axios.post(`http://localhost:5000/api/auth/register`, userData)
+        const { data: { result } } = await axios.post(`${baseUrl}/api/auth/register`, userData)
         localStorage.setItem("user", JSON.stringify(result))
         dispatch({ type: USER_REGISTER_SUCCESS, payload: result })
     } catch (error) {
@@ -15,7 +16,7 @@ export const userRegisterAction = (userData) => async dispatch => {
 export const userLoginAction = (userData) => async dispatch => {
     try {
         dispatch({ type: USER_LOGIN_REQUEST })
-        const { data: { result } } = await axios.post(`http://localhost:5000/api/auth/login`, userData)
+        const { data: { result } } = await axios.post(`${baseUrl}/api/auth/login`, userData)
         localStorage.setItem("user", JSON.stringify(result))
         dispatch({ type: USER_LOGIN_SUCCESS, payload: result })
     } catch (error) {
