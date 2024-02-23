@@ -26,6 +26,9 @@ app.use(express.static("public"))
 // Enable CORS
 app.use(cors())
 
+app.get('/' , (req , res)=>{
+    res.send("api blog is running")
+})
 
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
